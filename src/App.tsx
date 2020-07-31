@@ -3,11 +3,11 @@ import { BrowserRouter } from 'react-router-dom';
 
 import GlobalStyles from './styles/GlobalStyles';
 
-import Routes from './routes';
+import Home from './pages/Home';
 
 const App: React.FC = () => (
   <BrowserRouter>
-    <Routes />
+    <Home />
 
     <GlobalStyles />
   </BrowserRouter>
