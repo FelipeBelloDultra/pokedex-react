@@ -16,6 +16,7 @@ export default createGlobalStyle`
     background-repeat: no-repeat;
     background-size: 500px;
     background-position: -250px -100px;
+    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
   }
 
