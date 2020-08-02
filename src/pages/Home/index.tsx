@@ -85,11 +85,21 @@ const Home: React.FC = () => {
 
         setPokemons([pokemon, ...pokemons]);
         setInputError('');
+        inputRef.current.value = '';
       } catch (error) {
         setInputError('Ocorreu um erro');
       }
     },
     [pokemons, setPokemons],
+  );
+
+  const deletePokemon = useCallback(
+    (id: number) => {
+      const filtredPokemons = pokemons.filter(pokemon => pokemon.id !== id);
+
+      setPokemons(filtredPokemons);
+    },
+    [pokemons],
   );
 
   return (
@@ -105,6 +115,7 @@ const Home: React.FC = () => {
         {pokemons.map(pokemon => (
           <PokeCard
             key={pokemon.id}
+            deletePokemon={() => deletePokemon(pokemon.id)}
             image={pokemon.image}
             name={pokemon.name}
           />
