@@ -12,17 +12,10 @@ import api from '../../services/api';
 
 import { Form, PokeContainer } from './styles';
 
-// interface IStats {
-//   name: string;
-//   value: number;
-// }
-
 interface IPokemon {
   id: number;
   name: string;
   image: string;
-  // types: string[];
-  // stats: IStats[];
 }
 
 const Home: React.FC = () => {
@@ -69,11 +62,6 @@ const Home: React.FC = () => {
           image:
             response.data.sprites.other.dream_world.front_default ||
             response.data.sprites.front_default,
-          // stats: response.data.stats.map((stat: any) => ({
-          //   name: stat.stat.name,
-          //   value: stat.base_stat,
-          // })),
-          // types: response.data.types.map((type: any) => type.type.name),
         };
 
         const findPokemon = pokemons.find(

@@ -24,7 +24,7 @@ const PokeCard: React.FC<IProps> = ({ image, name, deletePokemon }) => {
           <button type="button" onClick={deletePokemon}>
             <FiTrash size={25} color="#fff" />
           </button>
-          <Link to="/">
+          <Link to={`/detail/${name}`}>
             <FiArrowRight size={25} color="#00b350" />
           </Link>
         </ButtonsContainer>
