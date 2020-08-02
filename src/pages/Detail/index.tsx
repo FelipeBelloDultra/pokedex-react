@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, Link } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -48,10 +49,11 @@ const Detail: React.FC = () => {
     });
   }, [params.pokemonName]);
 
-  console.log(pokemonInfo);
-
   return (
     <Container>
+      <Link to="/">
+        <FiArrowLeft size={20} color="#000" />
+      </Link>
       <h1>{pokemonInfo.name}</h1>
       <img src={pokemonInfo.image} alt={pokemonInfo.name} />
       <h3>Status: </h3>
