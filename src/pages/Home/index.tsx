@@ -5,24 +5,25 @@ import React, {
   FormEvent,
   useRef,
 } from 'react';
+import { Link } from 'react-router-dom';
 
 import PokeCard from '../../components/PokeCard';
 
 import api from '../../services/api';
 
-import { Form } from './styles';
+import { Form, PokeContainer } from './styles';
 
-interface IStats {
-  name: string;
-  value: number;
-}
+// interface IStats {
+//   name: string;
+//   value: number;
+// }
 
 interface IPokemon {
   id: number;
   name: string;
   image: string;
-  types: string[];
-  stats: IStats[];
+  // types: string[];
+  // stats: IStats[];
 }
 
 const Home: React.FC = () => {
@@ -55,11 +56,11 @@ const Home: React.FC = () => {
           image:
             response.data.sprites.other.dream_world.front_default ||
             response.data.sprites.front_default,
-          stats: response.data.stats.map((stat: any) => ({
-            name: stat.stat.name,
-            value: stat.base_stat,
-          })),
-          types: response.data.types.map((type: any) => type.type.name),
+          // stats: response.data.stats.map((stat: any) => ({
+          //   name: stat.stat.name,
+          //   value: stat.base_stat,
+          // })),
+          // types: response.data.types.map((type: any) => type.type.name),
         };
 
         const findPokemon = pokemons.find(poke => poke.id === pokemon.id);
@@ -70,8 +71,9 @@ const Home: React.FC = () => {
         }
 
         setPokemons([...pokemons, pokemon]);
+        setInputError('');
       } catch (error) {
-        console.log(error);
+        setInputError('Ocorreu um erro');
       }
     },
     [pokemons, setPokemons],
@@ -85,13 +87,14 @@ const Home: React.FC = () => {
           Procurar <br /> Pokemon
         </button>
       </Form>
-      <PokeCard />
-      {pokemons.map(pokemon => (
-        <div key={pokemon.id}>
-          <img src={pokemon.image} alt={pokemon.name} />
-          <p>{pokemon.name}</p>
-        </div>
-      ))}
+
+      <PokeContainer>
+        {pokemons.map(pokemon => (
+          <Link key={pokemon.id} to="/">
+            <PokeCard image={pokemon.image} name={pokemon.name} />
+          </Link>
+        ))}
+      </PokeContainer>
     </>
   );
 };

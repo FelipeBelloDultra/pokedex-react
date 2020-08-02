@@ -9,6 +9,7 @@ export const Form = styled.form<FormProps>`
   margin-top: 40px;
   max-width: 700px;
   display: flex;
+
   input {
     flex: 1;
     height: 70px;
@@ -18,15 +19,18 @@ export const Form = styled.form<FormProps>`
     color: #3a3a3a;
     border: 2px solid #fff;
     border-right: 0;
+
     ${props =>
       props.hasError &&
       css`
         border-color: #c53030;
       `}
+
     &::placeholder {
       color: #a8a8b3;
     }
   }
+
   button {
     width: 210px;
     height: 70px;
@@ -36,8 +40,22 @@ export const Form = styled.form<FormProps>`
     color: #fff;
     font-weight: bold;
     transition: background-color 0.2s;
+
     &:hover {
       background: ${shade(0.2, '#e74743')};
     }
+  }
+`;
+
+export const PokeContainer = styled.div`
+  margin-top: 80px;
+  max-width: 700px;
+
+  div {
+    margin-top: 20px;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
