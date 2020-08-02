@@ -5,7 +5,6 @@ import React, {
   FormEvent,
   useRef,
 } from 'react';
-import { Link } from 'react-router-dom';
 
 import PokeCard from '../../components/PokeCard';
 
@@ -28,13 +27,25 @@ interface IPokemon {
 
 const Home: React.FC = () => {
   const [inputError, setInputError] = useState<string>('');
-  const [pokemons, setPokemons] = useState<IPokemon[]>([]);
+  const [pokemons, setPokemons] = useState<IPokemon[]>(() => {
+    const storagePokemons = localStorage.getItem('@PokeSearch:pokemons');
+
+    if (storagePokemons) {
+      return JSON.parse(storagePokemons);
+    }
+
+    return [];
+  });
 
   const inputRef = useRef<HTMLInputElement>({} as HTMLInputElement);
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('@PokeSearch:pokemons', JSON.stringify(pokemons));
+  }, [pokemons]);
 
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
@@ -63,14 +74,16 @@ const Home: React.FC = () => {
           // types: response.data.types.map((type: any) => type.type.name),
         };
 
-        const findPokemon = pokemons.find(poke => poke.id === pokemon.id);
+        const findPokemon = pokemons.find(
+          poke => poke.id === pokemon.id || poke.name === pokemon.name,
+        );
 
         if (findPokemon) {
           setInputError('Pokemon já cadastrado');
           return;
         }
 
-        setPokemons([...pokemons, pokemon]);
+        setPokemons([pokemon, ...pokemons]);
         setInputError('');
       } catch (error) {
         setInputError('Ocorreu um erro');
@@ -90,9 +103,11 @@ const Home: React.FC = () => {
 
       <PokeContainer>
         {pokemons.map(pokemon => (
-          <Link key={pokemon.id} to="/">
-            <PokeCard image={pokemon.image} name={pokemon.name} />
-          </Link>
+          <PokeCard
+            key={pokemon.id}
+            image={pokemon.image}
+            name={pokemon.name}
+          />
         ))}
       </PokeContainer>
     </>

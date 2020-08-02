@@ -50,12 +50,4 @@ export const Form = styled.form<FormProps>`
 export const PokeContainer = styled.div`
   margin-top: 80px;
   max-width: 700px;
-
-  div {
-    margin-top: 20px;
-  }
-
-  a {
-    text-decoration: none;
-  }
 `;

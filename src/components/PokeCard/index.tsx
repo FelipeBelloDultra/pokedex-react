@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FiArrowRight, FiTrash } from 'react-icons/fi';
 
-import { Container } from './styles';
+import { Container, ButtonsContainer } from './styles';
 
 interface IProps {
   name: string;
@@ -9,10 +11,20 @@ interface IProps {
 
 const PokeCard: React.FC<IProps> = ({ image, name }) => {
   return (
-    <Container>
-      <img src={image} alt={name} />
-      <p>{name}</p>
-    </Container>
+    <>
+      <Container>
+        <img src={image} alt={name} />
+        <p>{name.toUpperCase()}</p>
+        <ButtonsContainer>
+          <button type="button">
+            <FiTrash size={25} color="#fff" />
+          </button>
+          <Link to="/">
+            <FiArrowRight size={25} color="#00b350" />
+          </Link>
+        </ButtonsContainer>
+      </Container>
+    </>
   );
 };
 
