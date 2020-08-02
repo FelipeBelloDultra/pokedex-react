@@ -58,8 +58,10 @@ const Home: React.FC = () => {
         return;
       }
 
+      const formatedPoke = pokeName.toLowerCase().replace(' ', '-');
+
       try {
-        const response = await api.get(`/pokemon/${pokeName}`);
+        const response = await api.get(`/pokemon/${formatedPoke}`);
 
         const pokemon = {
           id: response.data.id,
