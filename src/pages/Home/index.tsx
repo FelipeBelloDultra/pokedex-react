@@ -83,7 +83,7 @@ const Home: React.FC = () => {
     [pokemons, setPokemons],
   );
 
-  const deletePokemon = useCallback(
+  const handleDeletePokemon = useCallback(
     (id: number) => {
       const filtredPokemons = pokemons.filter(pokemon => pokemon.id !== id);
 
@@ -95,7 +95,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Form hasError={!!inputError} onSubmit={handleSubmit}>
-        <input ref={inputRef} placeholder="Digite o ID ou Nome do Pokemon" />
+        <input ref={inputRef} placeholder="Digite o ID ou nome do Pokemon" />
         <button type="submit">
           Procurar <br /> Pokemon
         </button>
@@ -105,7 +105,7 @@ const Home: React.FC = () => {
         {pokemons.map(pokemon => (
           <PokeCard
             key={pokemon.id}
-            deletePokemon={() => deletePokemon(pokemon.id)}
+            handleDeletePokemon={() => handleDeletePokemon(pokemon.id)}
             image={pokemon.image}
             name={pokemon.name}
           />

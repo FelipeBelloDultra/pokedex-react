@@ -52,5 +52,10 @@ export const ButtonsContainer = styled.div`
     border: 1;
     padding: 10px;
     margin-top: 20px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: ${shade(0.2, '#00b350')};
+    }
   }
 `;

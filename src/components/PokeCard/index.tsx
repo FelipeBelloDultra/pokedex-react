@@ -7,10 +7,10 @@ import { Container, ButtonsContainer } from './styles';
 interface IProps {
   name: string;
   image: string;
-  deletePokemon: () => void;
+  handleDeletePokemon: () => void;
 }
 
-const PokeCard: React.FC<IProps> = ({ image, name, deletePokemon }) => {
+const PokeCard: React.FC<IProps> = ({ image, name, handleDeletePokemon }) => {
   const pokeName = useMemo(() => {
     return name.toUpperCase().replace('-', ' ');
   }, [name]);
@@ -21,7 +21,7 @@ const PokeCard: React.FC<IProps> = ({ image, name, deletePokemon }) => {
         <img src={image} alt={name} />
         <p>{pokeName}</p>
         <ButtonsContainer>
-          <button type="button" onClick={deletePokemon}>
+          <button type="button" onClick={handleDeletePokemon}>
             <FiTrash size={25} color="#fff" />
           </button>
           <Link to={`/detail/${name}`}>
