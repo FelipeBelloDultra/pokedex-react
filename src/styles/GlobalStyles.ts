@@ -34,4 +34,15 @@ export default createGlobalStyle`
     margin: 0 auto;
     padding: 40px 20px;
   }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #e74743;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
 `;

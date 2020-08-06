@@ -29,6 +29,7 @@
     "prettier"
   ],
   "rules": {
+    "react/jsx-curly-newline": "off",
     "@typescript-eslint/ban-types": "off",
     "react/jsx-one-expression-per-line": "off",
     "@typescript-eslint/no-explicit-any": "off",

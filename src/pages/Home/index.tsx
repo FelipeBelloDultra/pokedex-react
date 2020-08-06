@@ -53,9 +53,9 @@ const Home: React.FC = () => {
       if (!pokeName) {
         setInputError(true);
         addToast({
-          description: `preencha o campo com o id ou nome do pokemon.`,
-          title: 'Erro...',
-          type: 'error',
+          description: `enter the Name or ID of the pokemon.`,
+          title: 'Alert!',
+          type: 'info',
         });
         return;
       }
@@ -80,9 +80,9 @@ const Home: React.FC = () => {
         if (findPokemon) {
           setInputError(true);
           addToast({
-            description: `o pokemon ${pokemon.name} já foi cadastrado.`,
-            title: 'Erro...',
-            type: 'error',
+            description: `pokemon ${pokemon.name} has already been registered.`,
+            title: 'Alert!',
+            type: 'info',
           });
           return;
         }
@@ -91,14 +91,14 @@ const Home: React.FC = () => {
         setInputError(false);
         inputRef.current.value = '';
         addToast({
-          description: `${pokemon.name} adicionado a sua lista.`,
-          title: 'Sucesso!',
+          description: `${pokemon.name} added to your list.`,
+          title: 'Success!',
           type: 'success',
         });
       } catch (error) {
         addToast({
-          description: `opss... nenhum pokemon encontrado.`,
-          title: 'Erro...',
+          description: `opss... no pokemon found.`,
+          title: 'Error...',
           type: 'error',
         });
         setInputError(true);
@@ -119,9 +119,9 @@ const Home: React.FC = () => {
   return (
     <>
       <Form hasError={inputError} onSubmit={handleSubmit}>
-        <input ref={inputRef} placeholder="Digite o ID ou nome do Pokemon" />
+        <input ref={inputRef} placeholder="Search Pokemon by Name or ID" />
         <button type="submit">
-          Procurar <br /> Pokemon
+          Search <br /> Pokemon
         </button>
       </Form>
 
