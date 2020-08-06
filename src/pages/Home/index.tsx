@@ -6,6 +6,8 @@ import React, {
   useRef,
 } from 'react';
 
+import { useToast } from '../../hooks/toast';
+
 import PokeCard from '../../components/PokeCard';
 
 import api from '../../services/api';
@@ -30,6 +32,8 @@ const Home: React.FC = () => {
     return [];
   });
 
+  const { addToast } = useToast();
+
   const inputRef = useRef<HTMLInputElement>({} as HTMLInputElement);
 
   useEffect(() => {
@@ -47,7 +51,11 @@ const Home: React.FC = () => {
       const pokeName = inputRef.current.value;
 
       if (!pokeName) {
-        setInputError('Preencha o campo');
+        addToast({
+          description: `preencha o campo com o id ou nome do pokemon.`,
+          title: 'Erro...',
+          type: 'error',
+        });
         return;
       }
 
@@ -70,17 +78,32 @@ const Home: React.FC = () => {
 
         if (findPokemon) {
           setInputError('Pokemon já cadastrado');
+          addToast({
+            description: `o pokemon ${pokemon.name} já foi cadastrado.`,
+            title: 'Erro...',
+            type: 'error',
+          });
           return;
         }
 
         setPokemons([pokemon, ...pokemons]);
         setInputError('');
         inputRef.current.value = '';
+        addToast({
+          description: `${pokemon.name} adicionado a sua lista.`,
+          title: 'Sucesso',
+          type: 'success',
+        });
       } catch (error) {
+        addToast({
+          description: `opss... um imprevisto aconteceu.`,
+          title: 'Erro...',
+          type: 'error',
+        });
         setInputError('Ocorreu um erro');
       }
     },
-    [pokemons, setPokemons],
+    [pokemons, addToast, setPokemons],
   );
 
   const handleDeletePokemon = useCallback(
