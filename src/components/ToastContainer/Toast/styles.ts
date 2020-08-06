@@ -28,7 +28,6 @@ export const Container = styled(animated.div)<ContainerProps>`
   border-radius: 10px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   display: flex;
-  opacity: 0.8;
 
   & + div {
     margin-top: 8px;

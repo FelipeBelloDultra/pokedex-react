@@ -44,6 +44,11 @@ export const Form = styled.form<FormProps>`
     &:hover {
       background: ${shade(0.2, '#e74743')};
     }
+
+    @media (max-width: 650px) {
+      padding: 0px 5px;
+      font-size: 12px;
+    }
   }
 `;
 
