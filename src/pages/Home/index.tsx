@@ -21,7 +21,7 @@ interface IPokemon {
 }
 
 const Home: React.FC = () => {
-  const [inputError, setInputError] = useState<string>('');
+  const [inputError, setInputError] = useState<boolean>(false);
   const [pokemons, setPokemons] = useState<IPokemon[]>(() => {
     const storagePokemons = localStorage.getItem('@PokeSearch:pokemons');
 
@@ -51,6 +51,7 @@ const Home: React.FC = () => {
       const pokeName = inputRef.current.value;
 
       if (!pokeName) {
+        setInputError(true);
         addToast({
           description: `preencha o campo com o id ou nome do pokemon.`,
           title: 'Erro...',
@@ -77,7 +78,7 @@ const Home: React.FC = () => {
         );
 
         if (findPokemon) {
-          setInputError('Pokemon já cadastrado');
+          setInputError(true);
           addToast({
             description: `o pokemon ${pokemon.name} já foi cadastrado.`,
             title: 'Erro...',
@@ -87,20 +88,20 @@ const Home: React.FC = () => {
         }
 
         setPokemons([pokemon, ...pokemons]);
-        setInputError('');
+        setInputError(false);
         inputRef.current.value = '';
         addToast({
           description: `${pokemon.name} adicionado a sua lista.`,
-          title: 'Sucesso',
+          title: 'Sucesso!',
           type: 'success',
         });
       } catch (error) {
         addToast({
-          description: `opss... um imprevisto aconteceu.`,
+          description: `opss... nenhum pokemon encontrado.`,
           title: 'Erro...',
           type: 'error',
         });
-        setInputError('Ocorreu um erro');
+        setInputError(true);
       }
     },
     [pokemons, addToast, setPokemons],
@@ -117,7 +118,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Form hasError={!!inputError} onSubmit={handleSubmit}>
+      <Form hasError={inputError} onSubmit={handleSubmit}>
         <input ref={inputRef} placeholder="Digite o ID ou nome do Pokemon" />
         <button type="submit">
           Procurar <br /> Pokemon
