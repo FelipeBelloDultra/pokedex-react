@@ -4,6 +4,8 @@ import { FiArrowLeft } from 'react-icons/fi';
 
 import api from '../../services/api';
 
+import PokeInfo from '../../components/PokeInfo';
+
 import { Container } from './styles';
 
 interface IPokemonParams {
@@ -51,21 +53,12 @@ const Detail: React.FC = () => {
 
   return (
     <Container>
-      <Link to="/">
-        <FiArrowLeft size={20} color="#000" />
-      </Link>
-      <h1>{pokemonInfo.name}</h1>
-      <img src={pokemonInfo.image} alt={pokemonInfo.name} />
-      <h3>Status: </h3>
-      {!!pokemonInfo.stats &&
-        pokemonInfo.stats.map(stat => (
-          <p key={stat.name}>
-            {stat.name}: {stat.value}
-          </p>
-        ))}
-      <h3>
-        Tipo: {!!pokemonInfo.types && pokemonInfo.types.map(type => `${type} `)}
-      </h3>
+      <header>
+        <Link to="/">
+          <FiArrowLeft size={25} color="#fff" />
+        </Link>
+      </header>
+      <PokeInfo pokemonInfo={pokemonInfo} />
     </Container>
   );
 };
