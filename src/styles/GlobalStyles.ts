@@ -38,10 +38,12 @@ export default createGlobalStyle`
   ::-webkit-scrollbar {
     width: 8px;
   }
+
   ::-webkit-scrollbar-thumb {
     background-color: #e74743;
     border-radius: 4px;
   }
+
   ::-webkit-scrollbar-track {
     background-color: #fff;
   }

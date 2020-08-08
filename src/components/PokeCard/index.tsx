@@ -12,7 +12,9 @@ interface IProps {
 
 const PokeCard: React.FC<IProps> = ({ image, name, handleDeletePokemon }) => {
   const pokeName = useMemo(() => {
-    return name.toUpperCase().replace('-', ' ');
+    const newName = name[0].toUpperCase() + name.substring(1);
+
+    return newName.replace('-', ' ');
   }, [name]);
 
   return (
