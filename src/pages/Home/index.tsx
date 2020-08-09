@@ -13,6 +13,7 @@ import PokeCard from '../../components/PokeCard';
 import api from '../../services/api';
 
 import { Form, PokeContainer } from './styles';
+import { formatWord } from '../../utils/formatWord';
 
 interface IPokemon {
   id: number;
@@ -53,7 +54,7 @@ const Home: React.FC = () => {
       if (!pokeName) {
         setInputError(true);
         addToast({
-          description: `enter the Name or ID of the pokemon.`,
+          description: 'Enter the Name or ID of the pokemon.',
           title: 'Alert!',
           type: 'info',
         });
@@ -80,7 +81,9 @@ const Home: React.FC = () => {
         if (findPokemon) {
           setInputError(true);
           addToast({
-            description: `pokemon ${pokemon.name} has already been registered.`,
+            description: `${formatWord(
+              pokemon.name,
+            )} has already been registered.`,
             title: 'Alert!',
             type: 'info',
           });
@@ -91,13 +94,15 @@ const Home: React.FC = () => {
         setInputError(false);
         inputRef.current.value = '';
         addToast({
-          description: `${pokemon.name} added to your list.`,
+          description: `${formatWord(
+            pokemon.name,
+          )} added to your list.`,
           title: 'Success!',
           type: 'success',
         });
       } catch (error) {
         addToast({
-          description: `opss... no pokemon found.`,
+          description: `Opss... no pokemon found.`,
           title: 'Error...',
           type: 'error',
         });

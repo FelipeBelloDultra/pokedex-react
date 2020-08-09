@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { formatWord } from '../../utils/formatWord';
+
+import { Container, ContainerStats, PokemonInfo, PokemonImg } from './styles';
 
 interface IStats {
   name: string;
@@ -19,20 +21,29 @@ interface IPokemonInfo {
 
 const PokeInfo: React.FC<IPokemonInfo> = ({ pokemonInfo }) => {
   return (
-    <Container>
-      <h1>{pokemonInfo.name}</h1>
-      <img src={pokemonInfo.image} alt={pokemonInfo.name} />
-      <h3>Status: </h3>
-      {!!pokemonInfo.stats &&
-        pokemonInfo.stats.map(stat => (
-          <p key={stat.name}>
-            {stat.name}: {stat.value}
-          </p>
-        ))}
-      <h3>
-        Tipo: {!!pokemonInfo.types && pokemonInfo.types.map(type => `${type} `)}
-      </h3>
-    </Container>
+    <>
+      <Container>
+        <ContainerStats>
+          <header>
+            <h3>
+              {pokemonInfo.name}, {pokemonInfo.id}
+            </h3>
+          </header>
+          <PokemonInfo>
+            {!!pokemonInfo.stats &&
+              pokemonInfo.stats.map(stat => (
+                <div key={stat.name}>
+                  <p>{formatWord(stat.name)}</p>
+                  <p>{stat.value}</p>
+                </div>
+              ))}
+          </PokemonInfo>
+        </ContainerStats>
+        <PokemonImg>
+          <img src={pokemonInfo.image} alt={pokemonInfo.name} />
+        </PokemonImg>
+      </Container>
+    </>
   );
 };
 

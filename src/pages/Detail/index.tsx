@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
+import { formatWord } from '../../utils/formatWord';
 import api from '../../services/api';
 
 import PokeInfo from '../../components/PokeInfo';
@@ -36,7 +37,7 @@ const Detail: React.FC = () => {
     api.get(`/pokemon/${params.pokemonName}`).then(response => {
       const pokemon = {
         id: response.data.id,
-        name: response.data.name,
+        name: formatWord(response.data.name),
         image:
           response.data.sprites.other.dream_world.front_default ||
           response.data.sprites.front_default,

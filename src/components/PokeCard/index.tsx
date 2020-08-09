@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiTrash } from 'react-icons/fi';
 
+import { formatWord } from '../../utils/formatWord';
+
 import { Container, ButtonsContainer } from './styles';
 
 interface IProps {
@@ -12,9 +14,7 @@ interface IProps {
 
 const PokeCard: React.FC<IProps> = ({ image, name, handleDeletePokemon }) => {
   const pokeName = useMemo(() => {
-    const newName = name[0].toUpperCase() + name.substring(1);
-
-    return newName.replace('-', ' ');
+    return formatWord(name);
   }, [name]);
 
   return (
