@@ -48,14 +48,16 @@ export const ButtonsContainer = styled.div`
     }
   }
 
-  > a {
+  > button + button {
     border: 1;
-    padding: 10px;
+    padding: 5px;
     margin-top: 20px;
+    background: transparent;
     transition: color 0.2s;
 
     &:hover {
       color: ${shade(0.2, '#00b350')};
+      background: transparent;
     }
   }
 `;
