@@ -12,6 +12,7 @@ export const Container = styled.div`
   border-radius: 5px 5px 0 0;
 
   display: flex;
+  flex-wrap: wrap;
 `;
 
 export const ContainerStats = styled.div`
@@ -35,8 +36,17 @@ export const ContainerStats = styled.div`
 
 export const PokemonInfo = styled.main`
   padding: 10px;
+  width: 400px;
+  min-width: 300px;
   width: 100%;
-  max-width: 400px;
+
+  @media (max-width: 700px) {
+    max-width: 700px;
+  }
+
+  @media (max-width: 340px) {
+    min-width: 0px;
+  }
 
   > div {
     display: flex;
@@ -65,6 +75,7 @@ export const PokemonImg = styled.aside`
   > img {
     height: 250px;
     width: 250px;
+    margin: 0 auto;
   }
 `;
 
