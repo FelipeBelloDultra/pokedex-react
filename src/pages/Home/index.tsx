@@ -94,9 +94,7 @@ const Home: React.FC = () => {
         setInputError(false);
         inputRef.current.value = '';
         addToast({
-          description: `${formatWord(
-            pokemon.name,
-          )} added to your list.`,
+          description: `${formatWord(pokemon.name)} added to your list.`,
           title: 'Success!',
           type: 'success',
         });

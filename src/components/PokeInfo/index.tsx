@@ -2,7 +2,14 @@ import React from 'react';
 
 import { formatWord } from '../../utils/formatWord';
 
-import { Container, ContainerStats, PokemonInfo, PokemonImg } from './styles';
+import {
+  Container,
+  ContainerStats,
+  PokemonInfo,
+  PokemonImg,
+  TypesContainer,
+  LabelType,
+} from './styles';
 
 interface IStats {
   name: string;
@@ -43,6 +50,14 @@ const PokeInfo: React.FC<IPokemonInfo> = ({ pokemonInfo }) => {
           <img src={pokemonInfo.image} alt={pokemonInfo.name} />
         </PokemonImg>
       </Container>
+      <TypesContainer>
+        {pokemonInfo.types &&
+          pokemonInfo.types.map(type => (
+            <LabelType key={type} type={type}>
+              {type}
+            </LabelType>
+          ))}
+      </TypesContainer>
     </>
   );
 };
