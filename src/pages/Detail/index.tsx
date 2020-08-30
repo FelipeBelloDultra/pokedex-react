@@ -27,11 +27,18 @@ interface IPokemonInfo {
 }
 
 const Detail: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [pokemonInfo, setPokemonInfo] = useState<IPokemonInfo>(
     {} as IPokemonInfo,
   );
 
   const { params } = useRouteMatch<IPokemonParams>();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
 
   useEffect(() => {
     api.get(`/pokemon/${params.pokemonName}`).then(response => {
@@ -59,7 +66,7 @@ const Detail: React.FC = () => {
           <FiArrowLeft size={25} color="#fff" />
         </Link>
       </header>
-      <PokeInfo pokemonInfo={pokemonInfo} />
+      <PokeInfo isLoading={isLoading} pokemonInfo={pokemonInfo} />
     </Container>
   );
 };

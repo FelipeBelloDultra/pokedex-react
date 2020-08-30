@@ -22,6 +22,7 @@ interface IPokemon {
 }
 
 const Home: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [inputError, setInputError] = useState<boolean>(false);
   const [pokemons, setPokemons] = useState<IPokemon[]>(() => {
     const storagePokemons = localStorage.getItem('@PokeSearch:pokemons');
@@ -36,6 +37,12 @@ const Home: React.FC = () => {
   const { addToast } = useToast();
 
   const inputRef = useRef<HTMLInputElement>({} as HTMLInputElement);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
     inputRef.current.focus();
@@ -64,6 +71,7 @@ const Home: React.FC = () => {
       const formatedPoke = pokeName.toLowerCase().replace(' ', '-');
 
       try {
+        setIsLoading(true);
         const response = await api.get(`/pokemon/${formatedPoke}`);
 
         const pokemon = {
@@ -105,6 +113,8 @@ const Home: React.FC = () => {
           type: 'error',
         });
         setInputError(true);
+      } finally {
+        setIsLoading(false);
       }
     },
     [pokemons, addToast, setPokemons],
@@ -131,6 +141,7 @@ const Home: React.FC = () => {
       <PokeContainer>
         {pokemons.map(pokemon => (
           <PokeCard
+            isLoading={isLoading}
             key={pokemon.id}
             handleDeletePokemon={() => handleDeletePokemon(pokemon.id)}
             image={pokemon.image}
