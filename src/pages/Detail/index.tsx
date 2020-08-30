@@ -36,8 +36,8 @@ const Detail: React.FC = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(true);
-    }, 1000);
+      setIsLoading(false);
+    }, 500);
   }, []);
 
   useEffect(() => {
