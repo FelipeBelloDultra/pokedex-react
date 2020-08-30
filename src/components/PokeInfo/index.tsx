@@ -1,5 +1,7 @@
 import React from 'react';
 
+import LoadingPokeInfo from '../Shimmer/LoadingPokeInfo';
+
 import { formatWord } from '../../utils/formatWord';
 
 import {
@@ -24,40 +26,47 @@ interface IPokemonInfo {
     types: string[];
     stats: IStats[];
   };
+  isLoading: boolean;
 }
 
-const PokeInfo: React.FC<IPokemonInfo> = ({ pokemonInfo }) => {
+const PokeInfo: React.FC<IPokemonInfo> = ({ pokemonInfo, isLoading }) => {
   return (
     <>
-      <Container>
-        <ContainerStats>
-          <header>
-            <h3>
-              {pokemonInfo.name}, {pokemonInfo.id}
-            </h3>
-          </header>
-          <PokemonInfo>
-            {!!pokemonInfo.stats &&
-              pokemonInfo.stats.map(stat => (
-                <div key={stat.name}>
-                  <p>{formatWord(stat.name)}</p>
-                  <p>{stat.value}</p>
-                </div>
+      {isLoading ? (
+        <LoadingPokeInfo />
+      ) : (
+        <>
+          <Container>
+            <ContainerStats>
+              <header>
+                <h3>
+                  {pokemonInfo.name}, {pokemonInfo.id}
+                </h3>
+              </header>
+              <PokemonInfo>
+                {!!pokemonInfo.stats &&
+                  pokemonInfo.stats.map(stat => (
+                    <div key={stat.name}>
+                      <p>{formatWord(stat.name)}</p>
+                      <p>{stat.value}</p>
+                    </div>
+                  ))}
+              </PokemonInfo>
+            </ContainerStats>
+            <PokemonImg>
+              <img src={pokemonInfo.image} alt={pokemonInfo.name} />
+            </PokemonImg>
+          </Container>
+          <TypesContainer>
+            {pokemonInfo.types &&
+              pokemonInfo.types.map(type => (
+                <LabelType key={type} type={type}>
+                  {type}
+                </LabelType>
               ))}
-          </PokemonInfo>
-        </ContainerStats>
-        <PokemonImg>
-          <img src={pokemonInfo.image} alt={pokemonInfo.name} />
-        </PokemonImg>
-      </Container>
-      <TypesContainer>
-        {pokemonInfo.types &&
-          pokemonInfo.types.map(type => (
-            <LabelType key={type} type={type}>
-              {type}
-            </LabelType>
-          ))}
-      </TypesContainer>
+          </TypesContainer>
+        </>
+      )}
     </>
   );
 };
