@@ -12,7 +12,7 @@ import PokeCard from '../../components/PokeCard';
 
 import api from '../../services/api';
 
-import { Form, PokeContainer } from './styles';
+import { Form, PokeContainer, WithoutPokemonContainer } from './styles';
 import { formatWord } from '../../utils/formatWord';
 
 interface IPokemon {
@@ -139,15 +139,21 @@ const Home: React.FC = () => {
       </Form>
 
       <PokeContainer>
-        {pokemons.map(pokemon => (
-          <PokeCard
-            isLoading={isLoading}
-            key={pokemon.id}
-            handleDeletePokemon={() => handleDeletePokemon(pokemon.id)}
-            image={pokemon.image}
-            name={pokemon.name}
-          />
-        ))}
+        {!pokemons.length ? (
+          <WithoutPokemonContainer>
+            <span>Your pokeball is empty.</span>
+          </WithoutPokemonContainer>
+        ) : (
+          pokemons.map(pokemon => (
+            <PokeCard
+              isLoading={isLoading}
+              key={pokemon.id}
+              handleDeletePokemon={() => handleDeletePokemon(pokemon.id)}
+              image={pokemon.image}
+              name={pokemon.name}
+            />
+          ))
+        )}
       </PokeContainer>
     </>
   );

@@ -56,3 +56,16 @@ export const PokeContainer = styled.div`
   margin-top: 80px;
   max-width: 700px;
 `;
+
+export const WithoutPokemonContainer = styled.div`
+  width: 270px;
+  margin-left: auto;
+
+  span {
+    color: #e74743;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 20px;
+  }
+`;
