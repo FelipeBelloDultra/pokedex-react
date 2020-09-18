@@ -50,7 +50,10 @@ export const PokemonInfo = styled.main`
 
   > div {
     display: flex;
+    padding: 0 5px 2px;
+    border: 8px;
     justify-content: space-between;
+    transition: all 0.2s;
 
     > p {
       margin-top: 10px;
@@ -59,6 +62,11 @@ export const PokemonInfo = styled.main`
 
     > p + p {
       margin-right: 10px;
+    }
+
+    &:hover {
+      transform: translateX(10px);
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
     }
   }
 `;
