@@ -132,7 +132,14 @@ const Home: React.FC = () => {
   return (
     <>
       <Form hasError={inputError} onSubmit={handleSubmit}>
-        <input ref={inputRef} placeholder="Search Pokemon by Name or ID" />
+        <input
+          type="text"
+          autoComplete="off"
+          autoCorrect="off"
+          spellCheck="false"
+          ref={inputRef}
+          placeholder="Search Pokemon by Name or ID"
+        />
         <button type="submit">
           Search <br /> Pokemon
         </button>

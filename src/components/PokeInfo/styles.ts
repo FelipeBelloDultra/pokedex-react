@@ -63,27 +63,31 @@ export const PokemonInfo = styled.main`
     > p + p {
       margin-right: 10px;
     }
-
-    &:hover {
-      transform: translateX(10px);
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    }
   }
 `;
 
 export const PokemonImg = styled.aside`
-  height: 260px;
-  width: 260px;
   padding: 10px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   > img {
     height: 250px;
     width: 250px;
+    object-fit: contain;
     margin: 0 auto;
+    position: relative;
+    top: 40px;
+  }
+
+  @media (max-width: 610px) {
+    width: 100%;
+
+    > img {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    margin-bottom: -35px;
   }
 `;
 

@@ -46,6 +46,7 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    margin-top: 15px;
 
     .pokemon-types {
       width: 70px;

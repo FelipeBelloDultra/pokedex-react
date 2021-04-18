@@ -12,9 +12,7 @@ export const Form = styled.form<FormProps>`
 
   input {
     flex: 1;
-    height: 70px;
-    padding: 0 24px;
-    border: 0;
+    padding: 23px 24px;
     border-radius: 5px 0 0 5px;
     color: #3a3a3a;
     border: 2px solid #fff;
@@ -44,10 +42,32 @@ export const Form = styled.form<FormProps>`
     &:hover {
       background: ${shade(0.2, '#e74743')};
     }
+  }
 
-    @media (max-width: 650px) {
+  @media (max-width: 650px) {
+    flex-direction: column;
+
+    button {
       padding: 0px 5px;
-      font-size: 12px;
+      border-radius: 5px;
+      max-width: 150px;
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+      margin-left: auto;
+    }
+
+    input {
+      -webkit-user-select: text;
+      user-select: text;
+      border-radius: 5px;
+      border-right: 2px solid #fff;
+
+      ${props =>
+        props.hasError &&
+        css`
+          border-color: #c53030;
+        `}
     }
   }
 `;
@@ -55,6 +75,7 @@ export const Form = styled.form<FormProps>`
 export const PokeContainer = styled.div`
   margin-top: 80px;
   max-width: 700px;
+  padding-bottom: 80px;
 `;
 
 export const WithoutPokemonContainer = styled.div`

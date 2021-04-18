@@ -29,6 +29,14 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  html {
+    overflow-y: scroll;
+  }
+
+  html, body, #root {
+    height: 100vh;
+  }
+
   #root {
     max-width: 960px;
     margin: 0 auto;
